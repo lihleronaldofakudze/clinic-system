@@ -12,6 +12,9 @@ public class Clinic extends DatabaseMethods {
     String clinicAddress;
     Connection connection = DatabaseConnection.getConnection();
 
+    public Clinic() {
+    }
+
     public Clinic(int clinicId, int clinicDoctorId, String clinicType, String clinicDescription, String clinicName,
             String clinicPlace, String clinicAddress) {
         this.clinicId = clinicId;

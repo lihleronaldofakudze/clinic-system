@@ -1,6 +1,8 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class Doctor extends DatabaseMethods {
     int doctorId;
@@ -11,6 +13,10 @@ public class Doctor extends DatabaseMethods {
     String doctorPassword;
     String doctorUsername;
     Connection connection = DatabaseConnection.getConnection();
+    Scanner scanner = new Scanner(System.in);
+
+    public Doctor() {
+    }
 
     public Doctor(int doctorId, String doctorName, int doctorMobile, String doctorEmail, String doctorAddress,
             String doctorPassword, String doctorUsername) {
@@ -80,20 +86,25 @@ public class Doctor extends DatabaseMethods {
     }
 
     @Override
-    public String toString() {
-        return "Doctor{" +
-                "doctorId=" + doctorId +
-                ", doctorName='" + doctorName + '\'' +
-                ", doctorMobile=" + doctorMobile +
-                ", doctorEmail='" + doctorEmail + '\'' +
-                ", doctorAddress='" + doctorAddress + '\'' +
-                ", doctorPassword='" + doctorPassword + '\'' +
-                ", doctorUsername='" + doctorUsername + '\'' +
-                '}';
-    }
-
-    @Override
     public void add() {
+        System.out.print("Enter Doctor Name: ");
+        String doctorName = scanner.next();
+
+        System.out.print("Enter Doctor Mobile: ");
+        int doctorMobile = scanner.nextInt();
+
+        System.out.print("Enter Doctor Email: ");
+        String doctorEmail = scanner.next();
+
+        System.out.print("Enter Doctor Address: ");
+        String doctorAddress = scanner.next();
+
+        System.out.print("Enter Doctor Password: ");
+        String doctorPassword = scanner.next();
+
+        System.out.print("Enter Doctor Username: ");
+        String doctorUsername = scanner.next();
+
         String sql = "INSERT INTO doctor (doctor_name, doctor_mobile, doctor_email, doctor_address, doctor_password, doctor_username) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -111,6 +122,27 @@ public class Doctor extends DatabaseMethods {
 
     @Override
     public void update() {
+        System.out.print("Enter Doctor Id: ");
+        int doctorId = scanner.nextInt();
+
+        System.out.print("Enter Doctor Name: ");
+        String doctorName = scanner.next();
+
+        System.out.print("Enter Doctor Mobile: ");
+        int doctorMobile = scanner.nextInt();
+
+        System.out.print("Enter Doctor Email: ");
+        String doctorEmail = scanner.next();
+
+        System.out.print("Enter Doctor Address: ");
+        String doctorAddress = scanner.next();
+
+        System.out.print("Enter Doctor Password: ");
+        String doctorPassword = scanner.next();
+
+        System.out.print("Enter Doctor Username: ");
+        String doctorUsername = scanner.next();
+
         String sql = "UPDATE doctor SET doctor_name = ?, doctor_mobile = ?, doctor_email = ?, doctor_address = ?, doctor_password = ?, doctor_username = ? WHERE doctor_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -129,6 +161,9 @@ public class Doctor extends DatabaseMethods {
 
     @Override
     public void delete() {
+        System.out.print("Enter Doctor Id: ");
+        int doctorId = scanner.nextInt();
+
         String sql = "DELETE FROM doctor WHERE doctor_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -141,7 +176,22 @@ public class Doctor extends DatabaseMethods {
 
     @Override
     public void print() {
-
+        String sql = "SELECT * FROM doctor";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                System.out.println("Doctor Id: " + resultSet.getInt("doctor_id"));
+                System.out.println("Doctor Name: " + resultSet.getString("doctor_name"));
+                System.out.println("Doctor Mobile: " + resultSet.getInt("doctor_mobile"));
+                System.out.println("Doctor Email: " + resultSet.getString("doctor_email"));
+                System.out.println("Doctor Address: " + resultSet.getString("doctor_address"));
+                System.out.println("Doctor Password: " + resultSet.getString("doctor_password"));
+                System.out.println("Doctor Username: " + resultSet.getString("doctor_username"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

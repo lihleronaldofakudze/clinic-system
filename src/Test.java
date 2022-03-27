@@ -11,6 +11,9 @@ public class Test extends DatabaseMethods {
     String testReport;
     Connection connection = DatabaseConnection.getConnection();
 
+    public Test() {
+    }
+
     public Test(int testId, String testName, String testType, String testDescription, String testPatientId,
             String testCost, String testReport) {
         this.testId = testId;

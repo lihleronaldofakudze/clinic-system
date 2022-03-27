@@ -12,6 +12,9 @@ public class Patient extends DatabaseMethods {
     String patientUsername;
     Connection connection = DatabaseConnection.getConnection();
 
+    public Patient() {
+    }
+
     public Patient(int patientId, String patientName, int patientMobile, String patientAddress, String patientEmail,
             String patientPassword, String patientUsername) {
         this.patientId = patientId;

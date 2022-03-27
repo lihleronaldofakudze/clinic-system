@@ -12,6 +12,9 @@ public class Nurse extends DatabaseMethods {
     String nurseUsername;
     Connection connection = DatabaseConnection.getConnection();
 
+    public Nurse() {
+    }
+
     public Nurse(int nurseId, String nurseName, int nurseMobile, String nurseEmail, String nurseAddress,
             String nursePassword, String nurseUsername) {
         this.nurseId = nurseId;

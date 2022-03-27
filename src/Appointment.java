@@ -9,6 +9,9 @@ public class Appointment extends DatabaseMethods {
     String appointmentDate;
     int appointmentDoctorId;
 
+    public Appointment() {
+    }
+
     public Appointment(int appointmentId, int appointmentNumber, String appointmentType, String appointmentDescription,
             String appointmentDate, int appointmentDoctorId) {
         this.appointmentId = appointmentId;

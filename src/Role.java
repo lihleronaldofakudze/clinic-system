@@ -14,6 +14,9 @@ public class Role extends DatabaseMethods {
         this.roleDescription = roleDescription;
     }
 
+    public Role() {
+    }
+
     public int getRoleId() {
         return roleId;
     }

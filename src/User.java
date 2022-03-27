@@ -11,6 +11,9 @@ public class User extends DatabaseMethods {
     String userUsername;
     Connection connection = DatabaseConnection.getConnection();
 
+    public User() {
+    }
+
     public User(int userId, int userRoleId, String userName, String userEmail, String userDob, String userAddress,
             String userPassword, String userUsername) {
         this.userId = userId;
@@ -90,9 +93,9 @@ public class User extends DatabaseMethods {
     public boolean login(String username, String password) {
         try {
             String sql = "SELECT * FROM user WHERE user_username = ? AND user_password = ?";
-            Statemt preparedStatement = connection.prepareStatement(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);
-            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return true;
@@ -101,6 +104,7 @@ public class User extends DatabaseMethods {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
