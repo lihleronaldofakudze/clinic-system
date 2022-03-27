@@ -1,6 +1,6 @@
-## Getting Started
+## Clinic Management System
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Java Console Application developed by Lihle Fakudze under Clout Developers Management.
 
 ## Folder Structure
 
@@ -13,6 +13,13 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 
 > If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
-## Dependency Management
+## OOP Classes Included
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- `Doctor` : Additional Methods (Add, Update, Delete, Print)
+- `Nurse` : Additional Methods (Add, Update, Delete, Print)
+- `User` : Additional Methods (Add, Update, Delete, Print)
+- `Role` : Additional Methods (Add, Update, Delete, Print)
+- `Patient` : Additional Methods (Add, Update, Delete, Print)
+- `Clinic` : Additional Methods (Add, Update, Delete, Print)
+- `Appointment` : Additional Methods (Add, Update, Delete, Print)
+- `Test` : Additional Methods (Add, Update, Delete, Print)
