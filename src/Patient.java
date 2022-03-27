@@ -1,4 +1,8 @@
-public class Patient {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Patient extends DatabaseMethods {
     int patientId;
     String patientName;
     int patientMobile;
@@ -6,6 +10,7 @@ public class Patient {
     String patientEmail;
     String patientPassword;
     String patientUsername;
+    Connection connection = DatabaseConnection.getConnection();
 
     public Patient(int patientId, String patientName, int patientMobile, String patientAddress, String patientEmail,
             String patientPassword, String patientUsername) {
@@ -75,16 +80,55 @@ public class Patient {
     }
 
     @Override
-    public String toString() {
-        return "Patient{" +
-                "patientId=" + patientId +
-                ", patientName='" + patientName + '\'' +
-                ", patientMobile=" + patientMobile +
-                ", patientAddress='" + patientAddress + '\'' +
-                ", patientEmail='" + patientEmail + '\'' +
-                ", patientPassword='" + patientPassword + '\'' +
-                ", patientUsername='" + patientUsername + '\'' +
-                '}';
+    public void add() {
+        String sql = "INSERT INTO patient(patient_name, patient_mobile, patient_address, patient_email, patient_password, patient_username) VALUES(?,?,?,?,?,?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, patientName);
+            preparedStatement.setInt(2, patientMobile);
+            preparedStatement.setString(3, patientAddress);
+            preparedStatement.setString(4, patientEmail);
+            preparedStatement.setString(5, patientPassword);
+            preparedStatement.setString(6, patientUsername);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update() {
+        String sql = "UPDATE patient SET patient_name = ?, patient_mobile = ?, patient_address = ?, patient_email = ?, patient_password = ?, patient_username = ? WHERE patient_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, patientName);
+            preparedStatement.setInt(2, patientMobile);
+            preparedStatement.setString(3, patientAddress);
+            preparedStatement.setString(4, patientEmail);
+            preparedStatement.setString(5, patientPassword);
+            preparedStatement.setString(6, patientUsername);
+            preparedStatement.setInt(7, patientId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void delete() {
+        String sql = "DELETE FROM patient WHERE patient_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, patientId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void print() {
+
     }
 
 }

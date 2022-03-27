@@ -1,4 +1,7 @@
-public class Appointment {
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Appointment extends DatabaseMethods {
     int appointmentId;
     int appointmentNumber;
     String appointmentType;
@@ -65,15 +68,53 @@ public class Appointment {
     }
 
     @Override
-    public String toString() {
-        return "Appointment{" +
-                "appointmentId=" + appointmentId +
-                ", appointmentNumber=" + appointmentNumber +
-                ", appointmentType='" + appointmentType + '\'' +
-                ", appointmentDescription='" + appointmentDescription + '\'' +
-                ", appointmentDate='" + appointmentDate + '\'' +
-                ", appointmentDoctorId=" + appointmentDoctorId +
-                '}';
+    public void add() {
+        String query = "INSERT INTO appointment (appointment_number, appointment_type, appointment_description, appointment_date, appointment_doctor_id) VALUES (?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement preparedStatement = DatabaseConnection.getConnection().prepareStatement(query);
+            preparedStatement.setInt(1, appointmentNumber);
+            preparedStatement.setString(2, appointmentType);
+            preparedStatement.setString(3, appointmentDescription);
+            preparedStatement.setString(4, appointmentDate);
+            preparedStatement.setInt(5, appointmentDoctorId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update() {
+        String query = "UPDATE appointment SET appointment_number = ?, appointment_type = ?, appointment_description = ?, appointment_date = ?, appointment_doctor_id = ? WHERE appointment_id = ?";
+        try {
+            PreparedStatement preparedStatement = DatabaseConnection.getConnection().prepareStatement(query);
+            preparedStatement.setInt(1, appointmentNumber);
+            preparedStatement.setString(2, appointmentType);
+            preparedStatement.setString(3, appointmentDescription);
+            preparedStatement.setString(4, appointmentDate);
+            preparedStatement.setInt(5, appointmentDoctorId);
+            preparedStatement.setInt(6, appointmentId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void delete() {
+        String query = "DELETE FROM appointment WHERE appointment_id = ?";
+        try {
+            PreparedStatement preparedStatement = DatabaseConnection.getConnection().prepareStatement(query);
+            preparedStatement.setInt(1, appointmentId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void print() {
+
     }
 
 }

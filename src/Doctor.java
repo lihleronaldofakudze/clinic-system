@@ -1,4 +1,8 @@
-public class Doctor {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Doctor extends DatabaseMethods {
     int doctorId;
     String doctorName;
     int doctorMobile;
@@ -6,6 +10,7 @@ public class Doctor {
     String doctorAddress;
     String doctorPassword;
     String doctorUsername;
+    Connection connection = DatabaseConnection.getConnection();
 
     public Doctor(int doctorId, String doctorName, int doctorMobile, String doctorEmail, String doctorAddress,
             String doctorPassword, String doctorUsername) {
@@ -85,6 +90,58 @@ public class Doctor {
                 ", doctorPassword='" + doctorPassword + '\'' +
                 ", doctorUsername='" + doctorUsername + '\'' +
                 '}';
+    }
+
+    @Override
+    public void add() {
+        String sql = "INSERT INTO doctor (doctor_name, doctor_mobile, doctor_email, doctor_address, doctor_password, doctor_username) VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, doctorName);
+            preparedStatement.setInt(2, doctorMobile);
+            preparedStatement.setString(3, doctorEmail);
+            preparedStatement.setString(4, doctorAddress);
+            preparedStatement.setString(5, doctorPassword);
+            preparedStatement.setString(6, doctorUsername);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update() {
+        String sql = "UPDATE doctor SET doctor_name = ?, doctor_mobile = ?, doctor_email = ?, doctor_address = ?, doctor_password = ?, doctor_username = ? WHERE doctor_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, doctorName);
+            preparedStatement.setInt(2, doctorMobile);
+            preparedStatement.setString(3, doctorEmail);
+            preparedStatement.setString(4, doctorAddress);
+            preparedStatement.setString(5, doctorPassword);
+            preparedStatement.setString(6, doctorUsername);
+            preparedStatement.setInt(7, doctorId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void delete() {
+        String sql = "DELETE FROM doctor WHERE doctor_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, doctorId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void print() {
+
     }
 
 }

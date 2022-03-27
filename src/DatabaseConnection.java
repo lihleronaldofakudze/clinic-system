@@ -10,6 +10,7 @@ public class DatabaseConnection {
         try {
             Class.forName(DRIVER_URL);
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            System.out.println("Connected to the database successfully");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
