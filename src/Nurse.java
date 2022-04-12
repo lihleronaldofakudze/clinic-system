@@ -1,6 +1,8 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class Nurse extends DatabaseMethods {
     int nurseId;
@@ -11,6 +13,7 @@ public class Nurse extends DatabaseMethods {
     String nursePassword;
     String nurseUsername;
     Connection connection = DatabaseConnection.getConnection();
+    Scanner scanner = new Scanner(System.in);
 
     public Nurse() {
     }
@@ -84,17 +87,36 @@ public class Nurse extends DatabaseMethods {
 
     @Override
     public void add() {
-        String sql = "INSERT INTO nurse(nurse_id, nurse_name, nurse_mobile, nurse_email, nurse_address, nurse_password, nurse_username) VALUES(?,?,?,?,?,?,?)";
+        System.out.println("Enter the following details to add a new nurse");
+        System.out.print("Enter the nurse name: ");
+        nurseName = scanner.nextLine();
+
+        System.out.print("Enter the nurse mobile: ");
+        nurseMobile = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Enter the nurse email: ");
+        nurseEmail = scanner.nextLine();
+
+        System.out.print("Enter the nurse address: ");
+        nurseAddress = scanner.nextLine();
+
+        System.out.print("Enter the nurse password: ");
+        nursePassword = scanner.nextLine();
+
+        System.out.print("Enter the nurse username: ");
+        nurseUsername = scanner.nextLine();
+
+        String sql = "INSERT INTO nurse(nurse_name, nurse_mobile, nurse_email, nurse_address, nurse_password, nurse_username) VALUES(?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, nurseId);
-            preparedStatement.setString(2, nurseName);
-            preparedStatement.setInt(3, nurseMobile);
-            preparedStatement.setString(4, nurseEmail);
-            preparedStatement.setString(5, nurseAddress);
-            preparedStatement.setString(6, nursePassword);
-            preparedStatement.setString(7, nurseUsername);
+            preparedStatement.setString(1, nurseName);
+            preparedStatement.setInt(2, nurseMobile);
+            preparedStatement.setString(3, nurseEmail);
+            preparedStatement.setString(4, nurseAddress);
+            preparedStatement.setString(5, nursePassword);
+            preparedStatement.setString(6, nurseUsername);
             preparedStatement.executeUpdate();
+            System.out.println("Nurse added successfully");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -102,6 +124,28 @@ public class Nurse extends DatabaseMethods {
 
     @Override
     public void update() {
+        System.out.println("Enter the following details to update a nurse");
+        System.out.print("Enter the nurse id: ");
+        nurseId = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Enter the nurse name: ");
+        nurseName = scanner.nextLine();
+
+        System.out.print("Enter the nurse mobile: ");
+        nurseMobile = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Enter the nurse email: ");
+        nurseEmail = scanner.nextLine();
+
+        System.out.print("Enter the nurse address: ");
+        nurseAddress = scanner.nextLine();
+
+        System.out.print("Enter the nurse password: ");
+        nursePassword = scanner.nextLine();
+
+        System.out.print("Enter the nurse username: ");
+        nurseUsername = scanner.nextLine();
+
         String sql = "UPDATE nurse SET nurse_name=?, nurse_mobile=?, nurse_email=?, nurse_address=?, nurse_password=?, nurse_username=? WHERE nurse_id=?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -113,6 +157,7 @@ public class Nurse extends DatabaseMethods {
             preparedStatement.setString(6, nurseUsername);
             preparedStatement.setInt(7, nurseId);
             preparedStatement.executeUpdate();
+            System.out.println("Nurse updated successfully");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -120,11 +165,16 @@ public class Nurse extends DatabaseMethods {
 
     @Override
     public void delete() {
+        System.out.println("Enter the following details to delete a nurse");
+        System.out.print("Enter the nurse id: ");
+        nurseId = Integer.parseInt(scanner.nextLine());
+
         String sql = "DELETE FROM nurse WHERE nurse_id=?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, nurseId);
             preparedStatement.executeUpdate();
+            System.out.println("Nurse deleted successfully");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -132,8 +182,23 @@ public class Nurse extends DatabaseMethods {
 
     @Override
     public void print() {
-        // TODO Auto-generated method stub
-
+        String sql = "SELECT * FROM nurse";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                System.out.println("Nurse Id: " + resultSet.getInt("nurse_id"));
+                System.out.println("Nurse Name: " + resultSet.getString("nurse_name"));
+                System.out.println("Nurse Mobile: " + resultSet.getInt("nurse_mobile"));
+                System.out.println("Nurse Email: " + resultSet.getString("nurse_email"));
+                System.out.println("Nurse Address: " + resultSet.getString("nurse_address"));
+                System.out.println("Nurse Password: " + resultSet.getString("nurse_password"));
+                System.out.println("Nurse Username: " + resultSet.getString("nurse_username"));
+                System.out.println("-------------------------------------------------------");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

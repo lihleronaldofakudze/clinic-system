@@ -57,14 +57,18 @@ public class Interface {
         if (response == 1) {
             doctor.add();
             doctor.print();
+            doctorMenu();
         } else if (response == 2) {
             doctor.print();
+            doctorMenu();
         } else if (response == 3) {
             doctor.update();
             doctor.print();
+            doctorMenu();
         } else if (response == 4) {
             doctor.delete();
             doctor.print();
+            doctorMenu();
         } else if (response == 5) {
             mainMenu();
         } else {
@@ -89,14 +93,18 @@ public class Interface {
         if (response == 1) {
             nurse.add();
             nurse.print();
+            nurseMenu();
         } else if (response == 2) {
             nurse.print();
+            nurseMenu();
         } else if (response == 3) {
             nurse.update();
             nurse.print();
+            nurseMenu();
         } else if (response == 4) {
             nurse.delete();
             nurse.print();
+            nurseMenu();
         } else if (response == 5) {
             mainMenu();
         } else {

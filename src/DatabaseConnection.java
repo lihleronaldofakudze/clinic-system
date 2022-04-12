@@ -4,7 +4,7 @@ public class DatabaseConnection {
     private static final String DRIVER_URL = "com.mysql.cj.jdbc.Driver";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "";
-    private static final String URL = "jdbc:mysql://localhost:3306/clinic_management";
+    private static final String URL = "jdbc:mysql://localhost:3306/902007953_902008707_902008569_902008955_902007968";
     private static Connection connection;
     static {
         try {

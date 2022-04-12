@@ -14,8 +14,8 @@
       "server": "localhost",
       "port": 3306,
       "driver": "MySQL",
-      "name": "clinic_management",
-      "database": "clinic_management",
+      "name": "Clinic Management System",
+      "database": "902007953_902008707_902008569_902008955_902007968",
       "username": "root",
       "password": ""
     }

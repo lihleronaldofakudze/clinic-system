@@ -38,11 +38,15 @@ public class App {
                 break;
             case 2:
                 System.exit(0);
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("Thank you for using the Hospital Management System");
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 break;
             default:
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 System.out.println("Invalid choice");
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                login();
         }
     }
 }

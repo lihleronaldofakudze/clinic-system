@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class User extends DatabaseMethods {
     int userId;
@@ -10,6 +11,7 @@ public class User extends DatabaseMethods {
     String userPassword;
     String userUsername;
     Connection connection = DatabaseConnection.getConnection();
+    Scanner scanner = new Scanner(System.in);
 
     public User() {
     }
@@ -110,8 +112,30 @@ public class User extends DatabaseMethods {
 
     @Override
     public void add() {
+        System.out.print("Enter Role ID: ");
+        int userRoleId = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Enter user name: ");
+        String userName = scanner.nextLine();
+
+        System.out.print("Enter user email: ");
+        String userEmail = scanner.nextLine();
+
+        System.out.print("Enter user DOB: ");
+        String userDob = scanner.nextLine();
+
+        System.out.print("Enter user address: ");
+        String userAddress = scanner.nextLine();
+
+        System.out.print("Enter user password: ");
+        String userPassword = scanner.nextLine();
+
+        System.out.print("Enter user username: ");
+        String userUsername = scanner.nextLine();
+
+        String sql = "INSERT INTO user (user_id, user_role_id, user_name, user_email, user_dob, user_address, user_password, user_username) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            String sql = "INSERT INTO user (user_id, user_role_id, user_name, user_email, user_dob, user_address, user_password, user_username) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, userRoleId);

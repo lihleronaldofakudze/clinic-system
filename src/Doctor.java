@@ -115,6 +115,7 @@ public class Doctor extends DatabaseMethods {
             preparedStatement.setString(5, doctorPassword);
             preparedStatement.setString(6, doctorUsername);
             preparedStatement.executeUpdate();
+            System.out.println("Inserted New Doctor Successfully");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -188,6 +189,7 @@ public class Doctor extends DatabaseMethods {
                 System.out.println("Doctor Address: " + resultSet.getString("doctor_address"));
                 System.out.println("Doctor Password: " + resultSet.getString("doctor_password"));
                 System.out.println("Doctor Username: " + resultSet.getString("doctor_username"));
+                System.out.println("-------------------------------------------------------");
             }
         } catch (SQLException e) {
             e.printStackTrace();
