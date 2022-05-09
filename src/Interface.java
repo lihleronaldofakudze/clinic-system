@@ -16,7 +16,7 @@ public class Interface {
         System.out.println("\t 8. User Management");
         System.out.println("\t 9. Exit");
         System.out.print("Enter your choice: ");
-        int response = scanner.nextInt();
+        int response = Integer.parseInt(scanner.nextLine());
         if (response == 1) {
             doctorMenu();
         } else if (response == 2) {
@@ -52,7 +52,7 @@ public class Interface {
         System.out.println("\t 4. Delete Doctor");
         System.out.println("\t 5. Back");
         System.out.print("Enter your choice: ");
-        int response = scanner.nextInt();
+        int response = Integer.parseInt(scanner.nextLine());
         Doctor doctor = new Doctor();
         if (response == 1) {
             doctor.add();
@@ -88,7 +88,7 @@ public class Interface {
         System.out.println("\t 4. Delete Nurse");
         System.out.println("\t 5. Back");
         System.out.print("Enter your choice: ");
-        int response = scanner.nextInt();
+        int response = Integer.parseInt(scanner.nextLine());
         Nurse nurse = new Nurse();
         if (response == 1) {
             nurse.add();
@@ -124,7 +124,7 @@ public class Interface {
         System.out.println("\t 4. Delete Patient");
         System.out.println("\t 5. Back");
         System.out.print("Enter your choice: ");
-        int response = scanner.nextInt();
+        int response = Integer.parseInt(scanner.nextLine());
         Patient patient = new Patient();
         if (response == 1) {
             patient.add();
@@ -156,7 +156,7 @@ public class Interface {
         System.out.println("\t 4. Delete Clinic");
         System.out.println("\t 5. Back");
         System.out.print("Enter your choice: ");
-        int response = scanner.nextInt();
+        int response = Integer.parseInt(scanner.nextLine());
         Clinic clinic = new Clinic();
         if (response == 1) {
             clinic.add();
@@ -188,7 +188,7 @@ public class Interface {
         System.out.println("\t 4. Delete Appointment");
         System.out.println("\t 5. Back");
         System.out.print("Enter your choice: ");
-        int response = scanner.nextInt();
+        int response = Integer.parseInt(scanner.nextLine());
         Appointment appointment = new Appointment();
         if (response == 1) {
             appointment.add();
@@ -220,7 +220,7 @@ public class Interface {
         System.out.println("\t 4. Delete Test");
         System.out.println("\t 5. Back");
         System.out.print("Enter your choice: ");
-        int response = scanner.nextInt();
+        int response = Integer.parseInt(scanner.nextLine());
         Test test = new Test();
         if (response == 1) {
             test.add();
@@ -252,7 +252,7 @@ public class Interface {
         System.out.println("\t 4. Delete Role");
         System.out.println("\t 5. Back");
         System.out.print("Enter your choice: ");
-        int response = scanner.nextInt();
+        int response = Integer.parseInt(scanner.nextLine());
         Role role = new Role();
         if (response == 1) {
             role.add();
@@ -284,7 +284,7 @@ public class Interface {
         System.out.println("\t 4. Delete User");
         System.out.println("\t 5. Back");
         System.out.print("Enter your choice: ");
-        int response = scanner.nextInt();
+        int response = Integer.parseInt(scanner.nextLine());
         User user = new User();
         if (response == 1) {
             user.add();

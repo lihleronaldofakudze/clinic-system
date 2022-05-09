@@ -14,7 +14,7 @@ public class App {
         System.out.println("\t 1. Login");
         System.out.println("\t 2. Exit");
         System.out.print("Enter your choice: ");
-        int response = scanner.nextInt();
+        int response = Integer.parseInt(scanner.nextLine());
         scanner.nextLine();
         switch (response) {
             case 1:

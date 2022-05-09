@@ -91,7 +91,7 @@ public class Doctor extends DatabaseMethods {
         String doctorName = scanner.next();
 
         System.out.print("Enter Doctor Mobile: ");
-        int doctorMobile = scanner.nextInt();
+        int doctorMobile = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Enter Doctor Email: ");
         String doctorEmail = scanner.next();
@@ -124,13 +124,13 @@ public class Doctor extends DatabaseMethods {
     @Override
     public void update() {
         System.out.print("Enter Doctor Id: ");
-        int doctorId = scanner.nextInt();
+        int doctorId = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Enter Doctor Name: ");
         String doctorName = scanner.next();
 
         System.out.print("Enter Doctor Mobile: ");
-        int doctorMobile = scanner.nextInt();
+        int doctorMobile = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Enter Doctor Email: ");
         String doctorEmail = scanner.next();
@@ -163,7 +163,7 @@ public class Doctor extends DatabaseMethods {
     @Override
     public void delete() {
         System.out.print("Enter Doctor Id: ");
-        int doctorId = scanner.nextInt();
+        int doctorId = Integer.parseInt(scanner.nextLine());
 
         String sql = "DELETE FROM doctor WHERE doctor_id = ?";
         try {
